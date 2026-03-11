@@ -11,6 +11,6 @@ echo "$server" > server.crt
 chmod 600 privatekey.pem
 chmod 644 server.crt
 pm2 delete simple_application || true
-pm2 start ./bin/www --name "simple_application"
+pm2 start ./bin/www --name "simple_application" --cwd /home/ubuntu/SimpleApplication
 
 # another test on deploy.sh
