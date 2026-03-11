@@ -7,4 +7,4 @@ echo $PRIVATE_KEY > private_key.pem
 echo &SERVER_KEY > server_key.crt
 pm2 start ./bin/www --name "simple_application"
 
-# just adding a comment to test the deployment process.
+# just adding a comment to test the deployment process. tried to fix the Private_key.pem issuse as in the app it is privatekey.pem 
