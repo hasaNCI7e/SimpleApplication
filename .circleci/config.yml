@@ -4,7 +4,11 @@ workflows:
   build_workflow:
     jobs:
       - build
-
+  deploy_workflow:
+    jobs:
+      - deploy:
+          requires:
+            - build
 jobs:
   build:
     docker:
@@ -14,3 +18,11 @@ jobs:
       - run:
           name: install dependencies
           command: npm install
+  deploy:
+    docker:
+      - image: cimg/node:18.0
+    steps:
+      - checkout
+      - run:
+          name: deploy to production
+          command: ssh -o StrictHostKeyChecking=no $EC2_DevOps@$EC2_DevOps_instance "rm -rf ExampleApplication/;git clone https://github.com/hasaNCI7e/SimpleApplication.git; source SimpleApplication/deploy.sh"
